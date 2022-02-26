@@ -19,12 +19,11 @@ jobs:
     - name: Deploy the Docker image
       run: docker save -o ./ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils
     - name: List files
-      run: ls
+      run: ls -R
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
         name: Built Docker Image
-        path: ./ubuntu-cn-utils.tar
         
   build-ci-mode:
   
@@ -37,9 +36,8 @@ jobs:
     - name: Deploy the Docker image
       run: docker save -o ./ubuntu-cn-utils-ci.tar sjc0910/ubuntu-cn-utils-ci
     - name: List files
-      run: ls
+      run: ls -R
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
         name: Built Docker Image
-        path: ./ubuntu-cn-utils-ci.tar
