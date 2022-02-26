@@ -19,8 +19,8 @@ jobs:
     - name: Deploy the Docker image
       run: docker save -o ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils:$(date +%s)
     - name: Download a Build Artifact
-    - uses: actions/download-artifact@v2.1.0
-    - with:
+      uses: actions/download-artifact@v2.1.0
+      with:
         name: Built Docker Image
         path: ./ubuntu-cn-utils.tar
         
@@ -35,7 +35,7 @@ jobs:
     - name: Deploy the Docker image
       run: docker save -o ubuntu-cn-utils-en.tar sjc0910/ubuntu-cn-utils:en-$(date +%s)
     - name: Download a Build Artifact
-    - uses: actions/download-artifact@v2.1.0
-    - with:
+      uses: actions/download-artifact@v2.1.0
+      with:
         name: Built Docker Image
         path: ./ubuntu-cn-utils-en.tar
