@@ -20,10 +20,6 @@ jobs:
       run: docker save -o ./ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils
     - name: List files
       run: ls -R
-    - name: Download a Build Artifact
-      uses: actions/download-artifact@v2.1.0
-      with:
-        name: Built Docker Image
         
   build-ci-mode:
   
@@ -38,6 +34,6 @@ jobs:
     - name: List files
       run: ls -R
     - name: Download a Build Artifact
-      uses: actions/download-artifact@v2.1.0
+      uses: dawidd6/action-download-artifact@v2.17.0
       with:
-        name: Built Docker Image
+        workflow: docker-image.yml
