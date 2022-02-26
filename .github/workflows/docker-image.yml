@@ -36,4 +36,4 @@ jobs:
     - name: Download a Build Artifact
       uses: dawidd6/action-download-artifact@v2.17.0
       with:
-        workflow: docker-image.yml
+        workflow: build-ci-mode
