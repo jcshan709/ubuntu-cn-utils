@@ -14,12 +14,13 @@ jobs:
 
     steps:
     - name: test
-      run: echo '::set-output name=timestrap::$(date +%s)'
+      run: echo '::set-output name=time::$(date +%s)'
+      id: timestrap
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.zh --tag sjc0910/ubuntu-cn-utils:$timestamp
+      run: docker build . --file Dockerfile.zh --tag sjc0910/ubuntu-cn-utils:${{steps.timestrap.outputs.time}}
     - name: Deploy the Docker image
-      run: docker save -o ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils:$timestamp
+      run: docker save -o ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils:${{steps.timestrap.outputs.time}}
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
@@ -33,9 +34,9 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.en --tag sjc0910/ubuntu-cn-utils-en:$timestamp
+      run: docker build . --file Dockerfile.en --tag sjc0910/ubuntu-cn-utils-en:${{steps.timestrap.outputs.time}}
     - name: Deploy the Docker image
-      run: docker save -o ubuntu-cn-utils-en.tar sjc0910/ubuntu-cn-utils-en:$timestamp
+      run: docker save -o ubuntu-cn-utils-en.tar sjc0910/ubuntu-cn-utils-en:${{steps.timestrap.outputs.time}}
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
