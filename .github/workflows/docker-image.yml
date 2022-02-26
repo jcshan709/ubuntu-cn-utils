@@ -13,32 +13,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: test
-      run: echo '::set-output name=time::$(date +%s)'
-      id: timestrap
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.zh --tag sjc0910/ubuntu-cn-utils:${{steps.timestrap.outputs.time}}
+      run: docker build . --file Dockerfile --tag sjc0910/ubuntu-cn-utils
     - name: Deploy the Docker image
-      run: docker save -o ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils:${{steps.timestrap.outputs.time}}
+      run: docker save -o ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
         name: Built Docker Image
         path: ./ubuntu-cn-utils.tar
         
-  build-tools-only:
+  build-ci-mode:
   
     runs-on: ubuntu-latest
     
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.en --tag sjc0910/ubuntu-cn-utils-en:${{steps.timestrap.outputs.time}}
+      run: docker build . --file Dockerfile.ci --tag sjc0910/ubuntu-cn-utils-ci
     - name: Deploy the Docker image
-      run: docker save -o ubuntu-cn-utils-en.tar sjc0910/ubuntu-cn-utils-en:${{steps.timestrap.outputs.time}}
+      run: docker save -o ubuntu-cn-utils-ci.tar sjc0910/ubuntu-cn-utils-ci
     - name: Download a Build Artifact
       uses: actions/download-artifact@v2.1.0
       with:
         name: Built Docker Image
-        path: ./ubuntu-cn-utils-en.tar
+        path: ./ubuntu-cn-utils-ci.tar

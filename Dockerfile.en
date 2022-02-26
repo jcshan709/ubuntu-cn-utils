@@ -1,8 +1,0 @@
-# no mirror settings mode
-FROM ubuntu
-
-RUN apt update && apt install -y ca-certificates
-# base tools
-RUN echo Fake mirror setting && apt install -y vim
-# programming
-RUN apt install -y gcc g++ python3 python-is-python3 perl
