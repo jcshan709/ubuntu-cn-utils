@@ -1,4 +1,4 @@
-# set mirror in the last step in order to let automatic build much faster
+# set mirror in the last step in order to make automatic building much faster
 FROM ubuntu
 
 # set timezone

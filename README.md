@@ -7,3 +7,4 @@ A docker image with Chinese mirror([Tsinghua Tuna Mirror](https://mirrors.tuna.t
 |gcc/g++|
 |python3/python-is-python3|
 |perl|
+|nodejs|

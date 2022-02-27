@@ -1,0 +1,29 @@
+name: Docker Image CD
+
+on:
+  push:
+    paths:
+      - Dockerfile
+      - Dockerfile.ci
+    branches: [ main ]
+  pull-request:
+    paths:
+      - Dockerfile
+      - Dockerfile.ci
+    branches: [main]
+
+jobs:
+
+  push:
+
+    needs:
+      - build-ci-mode
+    
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Login docker account
+      run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+    - name: Push built image on docker hub
+      run: docker push sjc0910/ubuntu-cn-utils
