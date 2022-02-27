@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Image CI/CD
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
     - name: List files
       run: ls -R
         
-  build-ci-mode:
+  CI:
   
     runs-on: ubuntu-latest
     
@@ -45,7 +45,7 @@ jobs:
         name: built-docker-image
         path: ./ubuntu-cn-utils.tar
   
-  cd:
+  CD:
 
     needs: [ build-ci-mode ]
 
@@ -63,3 +63,5 @@ jobs:
         run: docker load -i ./ubuntu-cn-utils.tar
       - name: Push Docker image
         run: docker push sjc0910/ubuntu-cn-utils
+      - name: Logout Docker
+        run: docker logout
