@@ -1,10 +1,12 @@
 # set mirror in the last step in order to let automatic build much faster
 FROM ubuntu
 
+# set timezone
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # necessary tools
 RUN apt update && apt install -y ca-certificates vim
 # apps
-RUN apt install -y gcc g++ python3 python-is-python3 perl
+RUN apt install -y gcc g++ python3 python-is-python3 perl nodejs
 # set mirror
 COPY ./sources.list /etc/apt/sources.list
 # flush apt
