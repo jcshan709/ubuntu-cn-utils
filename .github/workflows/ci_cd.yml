@@ -47,7 +47,7 @@ jobs:
   
   CD:
 
-    needs: [ build-ci-mode ]
+    needs: [ CI ]
 
     runs-on: ubuntu-latest
 
