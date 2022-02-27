@@ -34,13 +34,32 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . --file Dockerfile.ci --tag sjc0910/ubuntu-cn-utils-ci
+      run: docker build . --file Dockerfile.ci --tag sjc0910/ubuntu-cn-utils
     - name: Deploy the Docker image
-      run: docker save -o ./ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils-ci
+      run: docker save -o ./ubuntu-cn-utils.tar sjc0910/ubuntu-cn-utils
     - name: List files
       run: ls -R
     - name: Upload Artifact
-      uses: actions/upload-artifact@v2.3.1
+      uses: actions/upload-artifact@v2
       with:
         name: built-docker-image
         path: ./ubuntu-cn-utils.tar
+  
+  cd:
+
+    needs: [ build-ci-mode ]
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Login Docker
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: built-docker-image
+      - name: Load Docker image
+        run: docker load ./ubuntu-cn-utils.tar
+      - name: Push Docker image
+        run: docker push sjc0910/ubuntu-cn-utils
