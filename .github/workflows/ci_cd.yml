@@ -60,6 +60,6 @@ jobs:
         with:
           name: built-docker-image
       - name: Load Docker image
-        run: docker load ./ubuntu-cn-utils.tar
+        run: docker load -i ./ubuntu-cn-utils.tar
       - name: Push Docker image
         run: docker push sjc0910/ubuntu-cn-utils
