@@ -4,7 +4,7 @@ FROM ubuntu
 # set timezone
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 # apps
-RUN apt update && apt install -y ca-certificates vim gcc g++ python3 python-is-python3 perl nodejs
+RUN apt update && apt install -y ca-certificates vim gcc g++ cmake python3 python-is-python3 perl nodejs
 # set mirror
 COPY ./sources.list /etc/apt/sources.list
 # flush apt

@@ -5,6 +5,7 @@ A docker image with Chinese mirror([Tsinghua Tuna Mirror](https://mirrors.tuna.t
 |ca-certificates|
 |vim|
 |gcc/g++|
+|cmake|
 |python3/python-is-python3|
 |perl|
 |nodejs|

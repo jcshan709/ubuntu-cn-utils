@@ -7,4 +7,4 @@ RUN apt update && apt install -y ca-certificates
 # set mirror
 COPY ./sources.list /etc/apt/sources.list
 # apps
-RUN apt update && apt install -y vim gcc g++ python3 python-is-python3 perl nodejs
+RUN apt update && apt install -y vim gcc g++ cmake python3 python-is-python3 perl nodejs
